@@ -31,6 +31,10 @@ docker swarm join --token TOKEN 192.168.99.100:2377
 ```docker swarm join-token worker|manager```
 - Info about swarm (can be run on any node in a swarm)
 ```docker info```
+- Get details about a node  
+```docker node inspect self|name```
+- Drain a node
+``` docker node update --availability drain slave1 ```
 
 
 
