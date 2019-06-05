@@ -29,3 +29,6 @@ docker service rm web
 ``` docker service ps web ```
 - Find running docker daemons  
 ``` docker ps ```
+- Deploy a stack  
+``` docker stack deploy --compose-file docker-compose.yaml web ```
+

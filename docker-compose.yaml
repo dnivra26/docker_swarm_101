@@ -1,0 +1,35 @@
+version: "3"
+networks:
+  default:
+      driver: overlay
+services:
+  front-envoy:
+    image: envoyproxy/envoy-alpine:v1.7.0
+    volumes:
+      - ./envoy-config.yaml:/etc/envoy-config.yaml
+    ports:
+      - "8080:8080"
+      - "9901:9901"
+    command: "/usr/local/bin/envoy -c /etc/envoy-config.yaml --v2-config-only -l trace --service-cluster 'front-envoy' --service-node 'front-envoy' --log-format '[METADATA][%Y-%m-%d %T.%e][%t][%l][%n] %v'"
+    deploy:
+      replicas: 1
+  nginx:
+    image: nginx
+    ports:
+      - "80"
+    networks:
+      default:
+          aliases: 
+            - nginxarvind
+    deploy:
+      replicas: 2
+  nginx2:
+    image: nginx
+    ports:
+      - "80"
+    networks:
+      default:
+          aliases: 
+            - nginxarvind2  
+    deploy:
+      replicas: 1

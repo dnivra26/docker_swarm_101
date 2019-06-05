@@ -35,6 +35,8 @@ docker swarm join --token TOKEN 192.168.99.100:2377
 ```docker node inspect self|name```
 - Drain a node
 ``` docker node update --availability drain slave1 ```
+- Remote access
+``` eval $(docker-machine env master) ```
 
 
 
